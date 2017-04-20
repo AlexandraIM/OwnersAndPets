@@ -1,0 +1,30 @@
+﻿<div ng-controller="UserController">
+    <h2>All Users</h2>
+    <form ng-submit="submit()" class="form-inline">
+        <input type="text" ng-model="Name" placeholder="Enter Pet Owner Name" class="form-control" required/>
+        <input type="submit" value="Add User" class="btn btn-success"/><span id="Result"></span>
+    </form>
+    <br />
+    <p>Total count {{users.length}}</p>
+    <table class="table table-striped">
+        <tr>
+            <td>Name</td>
+            <td>Pets Count</td>
+            <td></td>
+        </tr>
+        <tr ng-repeat="user in users.slice(((currentPage-1)*itemsPerPage), ((currentPage)*itemsPerPage))">
+            <td ><a href="" ng-click="goToUserPage(user.Id)">{{user.Name}}</a></td>
+            <td>{{user.Pets}}</td>
+            <td><input type="button" value="Delete" id="Delete" ng-click="deleteUser(user.Id)" class="btn btn-danger" /></td>
+        </tr>
+        <tfoot>
+            <tr>
+                <td>
+                    <ul uib-pagination direction-links="false" total-items="totalItems" ng-model="currentPage" num-pages="smallnumPages" items-per-page="itemsPerPage"></ul>
+                </td>
+            </tr>
+
+        </tfoot>
+    </table>
+    
+</div>
